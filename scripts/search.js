@@ -8,7 +8,7 @@ var search = instantsearch({
 search.addWidget(
   instantsearch.widgets.searchBox({
     container: '#search-box',
-    placeholder: 'Search for books on the shelf...'
+    placeholder: 'Author, Title, Publisher, etc.'
   })
 );
 
