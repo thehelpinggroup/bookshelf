@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>KnowThyShelf | React Book Search</title>
+  </head>
+  <body>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+      var client = algoliasearch('NSZ3ROD6WC', '2145b63484ddc2900b008a7f498a6039');
+      var index = client.initIndex('primary-index');
+      // Promise example
+      console.log("<%= id %>")
+      index.search("<%= id %>")
+        .then(function searchSuccess(content) {
+          console.log(content);
+        })
+        .catch(function searchError(err) {
+          console.error(err);
+        });
+    </script>
+  </body>
+</html>
