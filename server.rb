@@ -1,10 +1,16 @@
 require 'rubygems'
-require 'sinatra'
 
-get '/' do
-  File.read(File.join('public', 'index.html'))
-end
 
-get '/book/:id' do
-  erb :book, {:locals => {:id => params[:id]}}
-end
+require 'webrick'
+require 'json'
+
+port = ENV['PORT'] ? ENV['PORT'].to_i : 9393
+
+puts "Server started: http://localhost:#{port}/"
+
+root = File.expand_path './public'
+server = WEBrick::HTTPServer.new Port: port, DocumentRoot: root
+
+trap('INT') { server.shutdown }
+
+server.start

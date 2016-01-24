@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>KnowThyShelf | React Book Search</title>
+  </head>
+  <body>
+    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+    <script>
+      function getParameterByName(name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+              results = regex.exec(location.search);
+          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      var permalink = getParameterByName('permalink');
+      var client = algoliasearch('NSZ3ROD6WC', '2145b63484ddc2900b008a7f498a6039');
+      var queries = [{
+        indexName: 'primary-index',
+        query: permalink,
+        params: {hitsPerPage: 3},
+        restrictSearchableAttributes: "permalink"
+      }];
+      console.log(permalink);
+      client.search(queries)
+        .then(function searchSuccess(content) {
+          console.log(content);
+        })
+      .catch(function searchError(err) {
+        console.error(err);
+      });
+    </script>
+  </body>
+</html>

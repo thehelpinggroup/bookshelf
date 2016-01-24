@@ -22,7 +22,7 @@ search.addWidget(
     hitsPerPage: 10,
     templates: {
       empty: 'No results',
-      item: '<strong>{{title}}</strong> by {{{author}}} http://knowthyshelf.com/{{objectID}}'
+      item: '<a href="http://localhost:9393/book?permalink={{permalink}}"><strong>{{title}}</strong> by {{{author}}}</a>'
     },
   })
 );
