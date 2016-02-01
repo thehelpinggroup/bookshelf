@@ -24,7 +24,6 @@ class Book extends React.Component {
     }];
     client.search(queries)
     .then(function searchSuccess(content) {
-      console.log(content);
       this.setState({
         author: content.results[0].hits[0].author,
         coverUrl: content.results[0].hits[0].cover_url,

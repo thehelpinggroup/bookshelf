@@ -1,38 +1,25 @@
 'use strict';
 
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { Router, Route, Link } from 'react-router'
-// import Book from './components/Book';
-//
-// const mountNode = document.getElementById('root');
-//
-// ReactDOM.render(
-//   <Book permalink="jack-kerouac-on-the-road" />,
-//   mountNode
-// );
-//
-// const App = React.createClass({#<{(|...|)}>#})
-//
-// render((
-//   <Router history={browserHistory}>
-//     <Route path="/" component={App}>
-//         <Route path="/book/:permalink" component={Book}/>
-//       </Route>
-//       <Route path="*" component={NoMatch}/>
-//     </Route>
-//   </Router>
-// ), document.body)
-
-
-
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Router, Route, browserHistory } from 'react-router';
 import Book from './components/Book';
+import Bookshelf from './components/Bookshelf';
 
-const mountNode = document.getElementById('root');
+const App = React.createClass({
+  render() {
+    return (
+      <div>
+        <h1>BOOK Search!</h1>
+        <Bookshelf />
+      </div>
+    );
+  }
+});
 
-ReactDOM.render(
-  <Book permalink="jack-kerouac-on-the-road" />,
-  mountNode
-);
+render((
+  <Router history={browserHistory}>
+    <Route path='book/:permalink' component={Book} />
+    <Route path='/' component={App} />
+  </Router>
+), document.body);
