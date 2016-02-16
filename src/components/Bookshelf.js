@@ -7,9 +7,9 @@ class Bookshelf extends React.Component {
   constructor(props) {
     super(props);
     this.search = instantsearch({
-      appId: 'NSZ3ROD6WC',
-      apiKey: '2145b63484ddc2900b008a7f498a6039',
-      indexName: 'primary-index',
+      appId: '5XC2UZIWS0',
+      apiKey: 'cd170872e1fa42f6c6b5118e2c1f8624',
+      indexName: 'master-bookshelf',
     });
   }
 
@@ -22,16 +22,41 @@ class Bookshelf extends React.Component {
     );
 
     this.search.addWidget(
+      instantsearch.widgets.menu({
+        container: '#publisher-menu',
+        attributeName: 'Publisher',
+        limit: 10,
+        templates: {
+          header: 'Publisher'
+        }
+      })
+    );
+
+    this.search.addWidget(
+      instantsearch.widgets.rangeSlider({
+        container: '#pages',
+        attributeName: 'Pages',
+        templates: {
+          header: 'Pages'
+        },
+        tooltips: {
+          format: function (formattedValue) {
+            return formattedValue;
+          }
+        }
+      })
+    );
+
+    this.search.addWidget(
       instantsearch.widgets.hits({
         container: '#hits-container',
         hitsPerPage: 10,
         templates: {
           empty: 'No results',
-          item: '<a href="/#/book/{{permalink}}"><strong>{{title}}</strong> by {{{author}}}</a>',
+          item: '<a href="/#/book/{{permalink}}">{{Original Title}}</a> by {{{Author}}}',
         },
       })
     );
-
     this.search.start();
   }
 
@@ -39,6 +64,11 @@ class Bookshelf extends React.Component {
     return(
       <div>
         <div id="search-box"></div>
+        <br />
+        <div id="publisher-menu"></div>
+        <br />
+        <div id="pages" style={{maxWidth: 450}}></div>
+        <br />
         <div id="hits-container"></div>
       </div>
     );
