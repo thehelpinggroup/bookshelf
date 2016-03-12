@@ -53,7 +53,7 @@ class Bookshelf extends React.Component {
         hitsPerPage: 10,
         templates: {
           empty: 'No results',
-          item: '<a href="/#/book/{{permalink}}">{{Original Title}}</a> by {{{Author}}}',
+          item: '<a href="/#/book/{{permalink}}">{{Original Title}}</a><br /> by {{{Author}}}',
         },
       })
     );
@@ -63,13 +63,15 @@ class Bookshelf extends React.Component {
   render() {
     return(
       <div>
-        <div id="search-box"></div>
-        <br />
-        <div id="publisher-menu"></div>
-        <br />
-        <div id="pages" style={{maxWidth: 450}}></div>
-        <br />
-        <div id="hits-container"></div>
+        <div className="col-md-2">
+          <div id="search-box"></div>
+          <br />
+          <div id="publisher-menu"></div>
+          <br />
+          <div id="pages" style={{maxWidth: 450}}></div>
+          <br />
+        </div>
+        <div id="hits-container" className="col-md-8 col-md-offset-1"></div>
       </div>
     );
   }
